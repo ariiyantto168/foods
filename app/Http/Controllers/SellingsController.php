@@ -100,6 +100,33 @@ class SellingsController extends Controller
         return redirect('sellings')->with('status_success','Sellings updated');
     }
 
+    public function update_page(Sellings $selling)
+    {
+        $seliings = Sellings::with([
+            'sellings_details' => function($sd){
+                $sd->with('foods');
+            }
+        ])->where('idsellings',$selling->idsellings)
+        ->first();
+
+        $contents = [
+            'sellings' => $selling,
+            'foods' => Foods::where('active', true)->get(),
+        ];
+
+        $pagecontent = view('sellings.update',$contents);
+
+        // masterpage
+        $pagemain = array(
+          'title' => 'Makan yuks',
+          'menu' => 'sellings',
+          'submenu' => '',
+          'pagecontent' => $pagecontent,
+        );
+
+        return view('masterpage', $pagemain);
+    }
+
 
 
     public function get_code()

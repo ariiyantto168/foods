@@ -39,3 +39,4 @@ Route::get('/sellings', 'SellingsController@index')->name('index');
 Route::get('/sellings/create-new', 'SellingsController@create_page')->name('create_page');
 Route::post('/sellings/create-new', 'SellingsController@save_page')->name('save_page');
 Route::post('/sellings/create-new', 'SellingsController@save_page')->name('save_page');
+Route::get('/sellings/update/{sellings}', 'SellingsController@update_page')->name('edit');

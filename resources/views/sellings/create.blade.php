@@ -161,11 +161,11 @@
           +'</td>'
           +'<td  style="border: 1px solid #d2d6de !important; ">'
             +'<small><strong>Price</strong></small>'
-            +'<input class="form-control" name="price[]" id="price_'+ais+'" onkeyup="count_value('+ais+')">'
+            +'<input class="form-control" name="price[]" id="price_'+ais+'" value="0" onkeyup="count_value('+ais+')">'
           +'</td>'
           +'<td  style="border: 1px solid #d2d6de !important; ">'
           +'<small><strong>Total</strong></small>'
-          +'<input type="number" name="totalsendiri[]" class="form-control"  id="total_'+ais+'"  onkeyup="total('+ais+')">'
+          +'<input type="number" name="totalsendiri[]" class="form-control" value="0"  id="total_'+ais+'"  onkeyup="total('+ais+')">'
           +'</td>'                                     
         +'</tr>'
         );

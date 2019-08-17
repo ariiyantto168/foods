@@ -16,6 +16,11 @@
                         <td>{{$numb+1}}</td>
                         <td>{{$sell->code}}</td>
                         <td>{{$sell->total}}</td>
+                        <td>
+                        <center>
+                        <a href="{{url('/sellings/update/'.$sell->idsellings)}}"><i class="fa fa-pencil-square-o"></i></a>
+                        </center>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
