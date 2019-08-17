@@ -18,7 +18,6 @@ class CreateSellingsDetailsTable extends Migration
             $table->integer('idfoods');
             $table->integer('idsellings');
             $table->string('quantity');
-            $table->string('price');
             $table->string('total');
             $table->softDeletes();
             $table->timestamps();

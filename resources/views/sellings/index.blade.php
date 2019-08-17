@@ -5,16 +5,17 @@
                 <thead>
                     <tr>
                     <th>No</th>
-                       <th>Name</th>
+                    <th>purchase order</th>
                     <th>price</th>
-                    <th>status</th>
                     <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sellings as $sell)
+                    @foreach ($sellings as $numb => $sell)
                     <tr>
+                        <td>{{$numb+1}}</td>
                         <td>{{$sell->code}}</td>
+                        <td>{{$sell->total}}</td>
                     </tr>
                     @endforeach
                 </tbody>

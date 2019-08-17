@@ -63,7 +63,41 @@ class SellingsController extends Controller
             'money' => 'required',
           ]);        
 
-        return $request->all();
+        // return $request->all();
+        $quantity = $request->quantity;
+        $totalsendiri = $request->totalsendiri;
+        $foods = $request->idfoods;
+        $fds = count($foods);
+
+        for ($i=0; $i < $fds; $i++) {
+            if($foods[$i] == 0) {
+                return redirect()->back()->with('status_eror', 'Foods empty');
+            }elseif ($quantity[$i] == 0){
+                return redirect()->back()->with('status_eror', 'Quantity empty');
+            }elseif ($totalsendiri[$i] == 0){
+                return redirect()->back()->with('status_eror', 'Total empty');
+            }
+        }
+
+        $saveSellings = new Sellings;
+        $saveSellings->code = $this->get_code();
+        $saveSellings->date = date('Y-m-d H:i:s');
+        $saveSellings->total = $request->totalall;
+        $saveSellings->money = $request->money;
+        $saveSellings->change = $request->change;
+        $saveSellings->save();
+
+        for ($i=0; $i < $fds; $i++){
+            $saveSellingsDetails = new SellingsDetails;
+            $saveSellingsDetails->idsellings = $saveSellings->idsellings;
+            $saveSellingsDetails->idfoods = $foods[$i];
+            $saveSellingsDetails->quantity = $quantity[$i];
+            $saveSellingsDetails->total = $totalsendiri[$i];
+            $saveSellingsDetails->save();
+        }
+        // return $request->all();
+
+        return redirect('sellings')->with('status_success','Sellings updated');
     }
 
 

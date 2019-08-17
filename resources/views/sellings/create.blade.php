@@ -48,7 +48,7 @@
                                     <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Money<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                      <input type="number" id="money" name="money" value="0" onchange="change();"  required="required" class="form-control col-md-7 col-xs-12">
+                                      <input type="number" id="money" name="money" value="0"  required="required" class="form-control col-md-7 col-xs-12">
                                     </div>
                             </div>
 
@@ -56,7 +56,7 @@
                                     <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Change<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                      <input type="number" id="change"  name="change" value="0" required="required" class="form-control col-md-7 col-xs-12">
+                                      <input type="number" id="change"  name="change" value="0" onkeyup="change()" required="required" class="form-control col-md-7 col-xs-12">
                                     </div>
                             </div>
 
@@ -110,9 +110,9 @@
                             
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-2">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" value="save" class="btn btn-success">Submit</button>
+                                    <button class="btn btn-primary" type="button" onclick="hitung()" >hitung</button>
+                                    {{-- <button class="btn btn-primary" type="reset">Reset</button> --}}
+                                    <button type="submit" value="save" class="btn btn-success" id="btn_save" disabled>Submit</button>
                                 </div>
                             </div>
                      </div>
@@ -157,7 +157,7 @@
           +'</td>'
           +'<td style="border: 1px solid #d2d6de !important; ">'
             +'<small><strong>Quantity</strong></small>'
-            +'<input type="number" name="quantity[]" class="form-control"  id="quantity_'+ais+'" onkeyup="count_value('+ais+')" >'
+            +'<input type="number" value="0" name="quantity[]" class="form-control"  id="quantity_'+ais+'" onkeyup="count_value('+ais+')" >'
           +'</td>'
           +'<td  style="border: 1px solid #d2d6de !important; ">'
             +'<small><strong>Price</strong></small>'
@@ -218,16 +218,17 @@
       var money = $('#money').val();
       var totalall = $('#totalall').val();
       // console.log(money);
-
+     
       setTimeout(function(){
-        
-      var change = parseInt(totalall) - parseInt(money);
-      if(change > 0){
-        $('#change').val(change);
-
-      }
+        var change = parseInt(money) - parseInt(totalall);
+      $('#change').val(change);   
       },500)
 
+    }
+    function hitung(){
+      change();
+
+      $('#btn_save').prop('disabled',false);
     }
   </script>
 
