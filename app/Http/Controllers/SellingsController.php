@@ -110,7 +110,7 @@ class SellingsController extends Controller
         ->first();
 
         $contents = [
-            'sellings' => $selling,
+            'selling' => $selling,
             'foods' => Foods::where('active', true)->get(),
         ];
 
@@ -127,6 +127,12 @@ class SellingsController extends Controller
         return view('masterpage', $pagemain);
     }
 
+    public function update_save(Request $request, Sellings $selling)
+    {
+        // return $request->all();
+
+
+    }
 
 
     public function get_code()
