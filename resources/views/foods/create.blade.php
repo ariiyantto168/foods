@@ -30,7 +30,7 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Price<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="namefoods" name="price" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="price" name="price" onkeyup="count_value(1)" value="0"  required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Harga Dasar<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="namefoods" name="hargadasar" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="hargadasar" name="hargadasar" onkeyup="count_value(1)" value="0" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Laba<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="namefoods" name="laba" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="laba" name="laba" onkeyup="laba(1)" value="0" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
 
@@ -84,3 +84,25 @@
         </div>
     </div>
 </div>
+
+<script>
+
+function count_value(id)
+{
+      var price = $('#price').val() || 0; 
+      var hargadasar = $('#hargadasar').val() || 0;
+      setTimeout(function(){
+        var laba = parseInt(price) - parseInt(hargadasar);
+        if(laba > 0){
+          $('#laba').val(laba);
+        }else{
+          $('#laba').val(0);
+        }
+      }, 500);
+      // console.log(y); 
+
+    
+}
+
+
+</script>

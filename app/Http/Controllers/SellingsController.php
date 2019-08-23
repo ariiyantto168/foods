@@ -108,7 +108,7 @@ class SellingsController extends Controller
             }
         ])->where('idsellings',$selling->idsellings)
         ->first();
-
+        // return $seliings;
         $contents = [
             'selling' => $selling,
             'foods' => Foods::where('active', true)->get(),
@@ -130,8 +130,26 @@ class SellingsController extends Controller
     public function update_save(Request $request, Sellings $selling)
     {
         // return $request->all();
+        $request->validate([
+            'date' ,
+            'money' => 'required',
+          ]);        
 
+        $sellings_details = $request->idsellingsdetails;
+        $quantity = $request->quantity;
+        $totalsendiri = $request->totalsendiri;
+        $foods = $request->idfoods;
+        $fds = count($foods);
 
+        for ($i=0; $i < $fds; $i++) {
+            if($foods[$i] == 0) {
+                return redirect()->back()->with('status_eror', 'Foods empty');
+            }elseif ($quantity[$i] == 0){
+                return redirect()->back()->with('status_eror', 'Quantity empty');
+            }elseif ($totalsendiri[$i] == 0){
+                return redirect()->back()->with('status_eror', 'Total empty');
+            }
+        }
     }
 
 

@@ -78,7 +78,7 @@
                                         <td style="border: 1px solid #d2d6de !important; text-align:center ">
                                             <label>{{$index+1}}</label>
                                         </td>
-                                        <input type="hidden" value="{{$sell->idsellingsdetails}}" name="idsellingsdetails[]">
+                                        <input type="hidden" value="{{$sell->idsellingsdetails}}" id="idsellingsdetails" name="idsellingsdetails[]">
                                         <td  style="border: 1px solid #d2d6de !important; ">
                                             <small><strong>Foods</strong></small>
                                             <select class="form-control select2" name="idfoods[]" id="idfoods{{$index+1}}" onchange="passing_price(1,this.value);">
@@ -90,7 +90,9 @@
                                               @php
                                                 $param[$food->idfoods] = $food->price;    
                                               @endphp
-                                              <option value="{{$food->idfoods}}">{{$food->namefoods}}</option>
+                                              <option value="{{$food->idfoods}}" @if ($food->idfoods == $sell->idfoods)
+                                                  selected
+                                              @endif>{{$food->namefoods}}</option>
                                              @endforeach
                                             </select>
                                           </td>
@@ -100,12 +102,12 @@
                                         </td>
                                         <td  style="border: 1px solid #d2d6de !important; ">
                                             <small><strong>Price</strong></small>
-                                              <input type="number" class="form-control" id="price_1" name="price[]" onkeyup="count_value(1)" value="0" readonly>
+                                            <input type="number" class="form-control" id="price_1" name="price[]" readonly value="{{$sell->foods->price}}" onkeyup="count_value(1)" value="0" readonly>
                                             </select>
                                           </td>
                                         <td  style="border: 1px solid #d2d6de !important; ">
                                             <small><strong>Total</strong></small>
-                                        <input type="number" name="totalsendiri[]" class="form-control"  id="total{{$index+1}}" value="{{$sell->total}}" onkeyup="total(1)">
+                                        <input type="number" name="totalsendiri[]" class="form-control"  id="total{{$index+1}}" readonly value="{{$sell->total}}" onkeyup="total(1)">
                                         </td>
                                     </tr>
                             @endforeach
@@ -128,7 +130,7 @@
             </div>
         </div>
         {{-- box --}}
-        <input type="hidden" id="appendindex" value="2">
+        <input type="hidden" id="appendindex" value="{{$selling->sellings_details->count()+1}}">
     </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -155,6 +157,7 @@ $('#addRow').on('click',function(){
   $('#table').append('<tr>'
       +'<td style="border: 1px solid #d2d6de !important; text-align:center">'
         +'<label>'+ais+'</label><br>'
+        +'<input type="hidden" value="new" name="idsellingsdetails[]" id="idsellingsdetails">'
         +'<a class="btn btn-xs del"><i class="fa fa-trash" aria-hidden="true"></i></a>'
       +'</td style="border: 1px solid #d2d6de !important; ">'
       +'<td style="border: 1px solid #d2d6de !important; ">'
@@ -168,11 +171,11 @@ $('#addRow').on('click',function(){
       +'</td>'
       +'<td  style="border: 1px solid #d2d6de !important; ">'
         +'<small><strong>Price</strong></small>'
-        +'<input class="form-control" name="price[]" id="price_'+ais+'" value="0" onkeyup="count_value('+ais+')">'
+        +'<input class="form-control" name="price[]" id="price_'+ais+'" readonly value="0" onkeyup="count_value('+ais+')">'
       +'</td>'
       +'<td  style="border: 1px solid #d2d6de !important; ">'
       +'<small><strong>Total</strong></small>'
-      +'<input type="number" name="totalsendiri[]" class="form-control" value="0"  id="total_'+ais+'"  onkeyup="total('+ais+')">'
+      +'<input type="number" name="totalsendiri[]" class="form-control" value="0"  id="total_'+ais+'" readonly onkeyup="total('+ais+')">'
       +'</td>'                                     
     +'</tr>'
     );
