@@ -139,7 +139,7 @@ class SellingsController extends Controller
         $quantity = $request->quantity;
         $totalsendiri = $request->totalsendiri;
         $foods = $request->idfoods;
-        $fds = count($foods);
+        $fds = count($sellings_details);
 
         for ($i=0; $i < $fds; $i++) {
             if($foods[$i] == 0) {
@@ -162,11 +162,11 @@ class SellingsController extends Controller
             if($sellings_details[$i] == 'new') {
                 $saveSellingsDetails = new SellingsDetails;      
                 $saveSellingsDetails->idsellings = $saveSellings->idsellings;
-                $saveSellingsDetails->idfoods = $foods[$i];
+                // $saveSellingsDetails->idfoods = $foods[$i];
             // jika tidak ada penambahan maka langsung ke else untuk data lama
 
             }else{
-                $saveSelllingsDetails = SellingsDetails::find($sellings_details[$i]);
+                $saveSellingsDetails = SellingsDetails::find($sellings_details[$i]);
                 // $saveSellingsDetails->idfoods = $foods[$i];
             }
 
@@ -174,15 +174,12 @@ class SellingsController extends Controller
             $saveSellingsDetails->quantity = $quantity[$i];
             $saveSellingsDetails->total = $totalsendiri[$i];
             $saveSellingsDetails->save();
-
+            // return $save
+            
             // return $request->all();
-            return redirect('sellings')->with('status_success','Sellings updated');
-
-
-
         }
 
-
+        return redirect('sellings')->with('status_success','Sellings updated');
     }
 
 

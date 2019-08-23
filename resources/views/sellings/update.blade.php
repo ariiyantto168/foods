@@ -78,10 +78,10 @@
                                         <td style="border: 1px solid #d2d6de !important; text-align:center ">
                                             <label>{{$index+1}}</label>
                                         </td>
-                                        <input type="hidden" value="{{$sell->idsellingsdetails}}" id="idsellingsdetails" name="idsellingsdetails[]">
+                                        <input type="hidden" value="{{$sell->idsellingsdetails}}" id="idsellingsdetails_{{$index+1}}" name="idsellingsdetails[]">
                                         <td  style="border: 1px solid #d2d6de !important; ">
                                             <small><strong>Foods</strong></small>
-                                            <select class="form-control select2" name="idfoods[]" id="idfoods_{{$index+1}}" onchange="passing_price(1,this.value);">
+                                            <select class="form-control select2" name="idfoods[]" id="idfoods_{{$index+1}}" onchange="passing_price({{$index+1}},this.value);">
                                               <option>- select Foods -</option>
                                               @php
                                                   $param = [];
@@ -102,7 +102,7 @@
                                         </td>
                                         <td  style="border: 1px solid #d2d6de !important; ">
                                             <small><strong>Price</strong></small>
-                                        <input type="number" class="form-control" id="price_{{$index+1}}" name="price[]" readonly value="{{$sell->foods->price}}" onkeyup="count_value(1)" value="0" readonly>
+                                        <input type="number" class="form-control" id="price_{{$index+1}}" name="price[]" readonly value="{{$sell->foods->price}}" onkeyup="count_value(1)" readonly>
                                             </select>
                                           </td>
                                         <td  style="border: 1px solid #d2d6de !important; ">
