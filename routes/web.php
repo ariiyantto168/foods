@@ -41,3 +41,4 @@ Route::post('/sellings/create-new', 'SellingsController@save_page')->name('save_
 Route::post('/sellings/create-new', 'SellingsController@save_page')->name('save_page');
 Route::get('/sellings/update/{selling}', 'SellingsController@update_page')->name('edit');
 Route::post('/sellings/update/{selling}', 'SellingsController@update_save')->name('edit');
+Route::delete('/sellings/delete/{selling}', 'SellingsController@delete')->name('delete');

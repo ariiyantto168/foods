@@ -81,7 +81,7 @@
                                         <input type="hidden" value="{{$sell->idsellingsdetails}}" id="idsellingsdetails" name="idsellingsdetails[]">
                                         <td  style="border: 1px solid #d2d6de !important; ">
                                             <small><strong>Foods</strong></small>
-                                            <select class="form-control select2" name="idfoods[]" id="idfoods{{$index+1}}" onchange="passing_price(1,this.value);">
+                                            <select class="form-control select2" name="idfoods[]" id="idfoods_{{$index+1}}" onchange="passing_price(1,this.value);">
                                               <option>- select Foods -</option>
                                               @php
                                                   $param = [];
@@ -98,16 +98,16 @@
                                           </td>
                                         <td  style="border: 1px solid #d2d6de !important; ">
                                             <small><strong>Quantity</strong></small>
-                                            <input type="number" name="quantity[]" onkeyup="count_value(1)" value="{{$sell->quantity}}" class="form-control"  id="quantity{{$index+1}}">
+                                            <input type="number" name="quantity[]" onkeyup="count_value(1)" value="{{$sell->quantity}}" class="form-control"  id="quantity_{{$index+1}}">
                                         </td>
                                         <td  style="border: 1px solid #d2d6de !important; ">
                                             <small><strong>Price</strong></small>
-                                            <input type="number" class="form-control" id="price_1" name="price[]" readonly value="{{$sell->foods->price}}" onkeyup="count_value(1)" value="0" readonly>
+                                        <input type="number" class="form-control" id="price_{{$index+1}}" name="price[]" readonly value="{{$sell->foods->price}}" onkeyup="count_value(1)" value="0" readonly>
                                             </select>
                                           </td>
                                         <td  style="border: 1px solid #d2d6de !important; ">
                                             <small><strong>Total</strong></small>
-                                        <input type="number" name="totalsendiri[]" class="form-control"  id="total{{$index+1}}" readonly value="{{$sell->total}}" onkeyup="total(1)">
+                                        <input type="number" name="totalsendiri[]" class="form-control"  id="total_{{$index+1}}" readonly value="{{$sell->total}}" onkeyup="total(1)">
                                         </td>
                                     </tr>
                             @endforeach

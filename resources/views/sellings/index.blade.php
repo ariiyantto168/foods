@@ -19,6 +19,7 @@
                         <td>
                         <center>
                         <a href="{{url('/sellings/update/'.$sell->idsellings)}}"><i class="fa fa-pencil-square-o"></i></a>
+                        <a href="{{url('/sellings/delete/'.$sell->idsellings)}}"><i class="fa fa-trash"></i></a>
                         </center>
                         </td>
                     </tr>
