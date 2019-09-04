@@ -19,6 +19,7 @@ class CreateFoodsTable extends Migration
             $table->string('price');
             $table->string('hargadasar');
             $table->string('laba');
+            $table->string('images')->nullable();
             $table->text('description');
             $table->boolean('active');
             $table->softDeletes();

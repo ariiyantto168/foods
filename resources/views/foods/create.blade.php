@@ -15,7 +15,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="dashboard_graph">
             <div class="row x_title">
-        {{ Form::open(array('url' => 'foods/create-new', 'class' => 'form-horizontal')) }}
+        {{ Form::open(array('url' => 'foods/create-new', 'class' => 'form-horizontal', 'files' => 'true')) }}
              <div class="x_content">
                 <br />
                     <div class="form-group">
@@ -47,6 +47,15 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="number" id="laba" name="laba" onkeyup="laba(1)" value="0" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Images<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="file" id="images" name="images" class="form-control col-md-7 col-xs-12">
+                          <small class="text-danger">size image max height:1000, width:1000 pixel</small>
                         </div>
                     </div>
 

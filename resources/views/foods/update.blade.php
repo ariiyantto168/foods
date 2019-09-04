@@ -46,9 +46,22 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Laba<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="namefoods" name="laba" value="{{$foods->laba}}" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="namefoods" name="laba" value="{{$foods->laba}}/{{$foods->images}}" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
+
+                    @if($foods->images != NULL)
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="inputName"></label>
+                        <div class="col-sm-10">
+                            @if(is_null($foods->images))
+                            -
+                            @else
+                            <img class="img-responsive" src="{{asset('foods_images')}}" width="300">
+                            @endif
+                        </div>
+                    </div>
+                    @endif
 
 
                     <div class="form-group">

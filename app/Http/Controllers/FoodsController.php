@@ -6,6 +6,9 @@ use App\Models\Foods;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use File;
+use Illuminate\Support\Str;
+use Image;
 
 class FoodsController extends Controller
 {
@@ -59,7 +62,8 @@ class FoodsController extends Controller
             'hargadasar' => 'required',
             'laba' => 'required',
             'description' => 'required',
-            'status' => ''
+            'status' => '',
+            'images' => 'required|file|mimes:jpeg,png,jpg|max:1024'
         ]);
 
         //active
@@ -75,6 +79,15 @@ class FoodsController extends Controller
         $saveFoods->laba = $request->laba;
         $saveFoods->description = $request->description;
         $saveFoods->active = $active;
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            $re_image = Str::random(20).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(300, 300)->save( public_path('/foods_images/' . $re_image) );
+            $saveFoods->images = $re_image;
+        }
+
+         // return $request->file('images');
+         // return $saveFoods;
         $saveFoods->save();
         return redirect('foods')->with('status_success','Created foods');
     }
@@ -108,6 +121,7 @@ class FoodsController extends Controller
             'price' => 'required',
             'hargadasar' => 'required',
             'laba' => 'required',
+            'photos' => 'file|mimes:jpeg,png,jpg|max:1024|dimensions:max_width=1000,max_height=1000',
             'description' => 'required',
             'status' => ''
         ]);
@@ -125,6 +139,10 @@ class FoodsController extends Controller
         $updateFoods->laba = $request->laba;
         $updateFoods->description = $request->description;
         $updateFoods->active = $active;
+
+        // jika images null
+        
+
         $updateFoods->save();
         return redirect('foods')->with('status_success','Created foods');
 
