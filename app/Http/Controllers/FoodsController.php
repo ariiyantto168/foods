@@ -109,6 +109,7 @@ class FoodsController extends Controller
             'submenu' => 'foods',
             'pagecontent' => $pagecontent
         );
+
         
         return view('masterpage', $pagemain);
     }
@@ -148,4 +149,22 @@ class FoodsController extends Controller
 
     }
 
+    public function change_image(Request $request,Foods $foods)
+    {
+        $save_image = Foods::find($foods->idfoods);
+        
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            $re_image = Str::random(20).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(300, 300)->save( public_path('/foods_images/' . $re_image) );
+            $save_image->images = $re_image;
+        }
+
+        $save_image->save();
+
+        return redirect('foods/update/'.$foods->idfoods)->with('status_success','Change  Image');
+        // $request->file('images');
+    }   
+
+    
 }

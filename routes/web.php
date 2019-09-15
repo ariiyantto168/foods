@@ -33,6 +33,9 @@ Route::get('/foods/create-new', 'FoodsController@create_page')->name('create_pag
 Route::post('/foods/create-new', 'FoodsController@save_page')->name('save_page');
 Route::get('/foods/update/{foods}', 'FoodsController@update_page')->name('edit');
 Route::post('/foods/update/{foods}', 'FoodsController@update_save')->name('edit');
+Route::post('/foods/change-image/{foods}', 'FoodsController@change_image')->name('edit');
+
+
 
 // Sellings
 Route::get('/sellings', 'SellingsController@index')->name('index');

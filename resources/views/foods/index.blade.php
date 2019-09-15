@@ -6,7 +6,8 @@
 		        <tr>
 		        <th>No</th>
        			<th>Name</th>
-        		<th>price</th>
+                <th>price</th>
+                <th>photos</th>
         		<th>status</th>
                 <th></th>
 		        </tr>
@@ -17,6 +18,13 @@
                 <td>{{$numb+1}}</td>
                 <td>{{$food->namefoods}}</td>
                 <td>{{$food->price}}</td>
+                <td>
+                    @if (is_null($food->images))
+                      <label> - </label>
+                    @else
+                      <img class="img-rounded zoom" src="{{asset('foods_images')}}/{{$food->images }}" width="100">
+                    @endif
+                  </td>
                 <td>
                 <center>
                 @if ($food->active)

@@ -50,18 +50,19 @@
                         </div>
                     </div>
 
-                    @if($foods->images != NULL)
+                    
                     <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="inputName"></label>
-                        <div class="col-sm-10">
-                            @if(is_null($foods->images))
-                            -
-                            @else
-                            <img class="img-responsive" src="{{asset('foods_images')}}" width="300">
-                            @endif
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Images<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{-- <input type="file" id="images" name="images" value="{{$foods->images}}" class="form-control col-md-7 col-xs-12"> --}}
+                            <img class="img-rounded zoom" id="img-upload" src="{{asset('foods_images')}}/{{$foods->images }}" width="50">
+                          <small class="text-danger">size image max height:1000, width:1000 pixel</small>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#change-image">change</button>
                         </div>
                     </div>
-                    @endif
 
 
                     <div class="form-group">
@@ -94,6 +95,38 @@
              </div>
         {{Form::close()}}
             </div>
+        <div id="change-image" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                {{-- modal content --}}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Change Image</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{Form::open(array('url' => 'foods/change-image/'.$foods->idfoods, 'class' => 'form-horizontal','files' => 'true'))}}
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <small>Upload Image</small>
+                                <input type="file" class="form-control" placeholder="Image" name="images" required>  
+                            </div>
+                        </div>
+                           
+                    </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <input type="submit" value="Save" class="btn btn-success">
+                        {{Form::close()}}
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
         </div>
     </div>
 </div>
