@@ -151,15 +151,17 @@ class FoodsController extends Controller
 
     public function change_image(Request $request,Foods $foods)
     {
+        $image_old =  public_path('/foods_images/' . $foods->images);
         $save_image = Foods::find($foods->idfoods);
-        
         if ($request->hasFile('images')) {
-            $image = $request->file('images');
-            $re_image = Str::random(20).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(300, 300)->save( public_path('/foods_images/' . $re_image) );
-            $save_image->images = $re_image;
+            if (File::exists($image_old)) {
+                $image = $request->file('images');
+                $re_image = Str::random(20).'.'.$image->getClientOriginalExtension();
+                Image::make($image)->resize(300, 300)->save( public_path('/foods_images/' . $re_image) );
+                $save_image->images = $re_image;
+            }
+            File::delete($image_old);
         }
-
         $save_image->save();
 
         return redirect('foods/update/'.$foods->idfoods)->with('status_success','Change  Image');
